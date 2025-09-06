@@ -1,0 +1,88 @@
+﻿<Page x:Class="BeautySalon.Pages.ServiceEditorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BeautySalon.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      FontFamily="Tahoma"
+      Title="Редактор услуг">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10" HorizontalAlignment="Left">
+            <Button x:Name="AddServiceButton" Content="Добавить услугу" Margin="5" Padding="10,5" 
+                    Click="AddServiceButton_Click" Background="#ff4a6d" Foreground="White"/>
+            <Button x:Name="EditServiceButton" Content="Редактировать услугу" Margin="5" Padding="10,5" 
+                    Click="EditServiceButton_Click" Background="#4CAF50" Foreground="White" IsEnabled="False"/>
+            <Button x:Name="DeleteServiceButton" Content="Удалить услугу" Margin="5" Padding="10,5" 
+                    Click="DeleteServiceButton_Click" Background="#f44336" Foreground="White" IsEnabled="False"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ListBox x:Name="ServicesListBox" Margin="10" BorderThickness="0" SelectionChanged="ServicesListBox_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="0,5" Padding="10">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasDiscount}" Value="True">
+                                            <Setter Property="Background" Value="#E8F5E9"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Изображение услуги -->
+                                <Image Grid.Column="0" Width="80" Height="80" Margin="0,0,10,0"
+                                       Source="{Binding MainImagePath}" 
+                                       Stretch="UniformToFill"/>
+
+                                <!-- Основная информация -->
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Title}" FontSize="14" FontWeight="Bold" 
+                                               Margin="0,0,0,5"/>
+                                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" 
+                                               Margin="0,0,0,5" MaxHeight="40" TextTrimming="CharacterEllipsis"/>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                        <TextBlock Text="Длительность: " FontWeight="SemiBold"/>
+                                        <TextBlock>
+                                            <Run Text="{Binding DurationInMinutes}"/>
+                                            <Run Text=" мин."/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <!-- Цена и скидка -->
+                                <StackPanel Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Cost, StringFormat={}{0:C}}" FontSize="12"/>
+                                    <TextBlock Text="{Binding DiscountedPrice, StringFormat={}{0:C}}" 
+                                               FontSize="14" FontWeight="Bold" Foreground="Red"
+                                               Visibility="{Binding HasDiscount, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    <TextBlock Text="{Binding Discount, StringFormat={}Скидка {0:P0}}" 
+                                               FontSize="11" Foreground="Green"
+                                               Visibility="{Binding HasDiscount, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+    </Grid>
+</Page>

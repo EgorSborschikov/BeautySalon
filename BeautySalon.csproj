@@ -70,10 +70,20 @@
     <Compile Include="AdminPanelWindow.xaml.cs">
       <DependentUpon>AdminPanelWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditServiceWindow.xaml.cs">
+      <DependentUpon>EditServiceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ServiceEditorPage.xaml.cs">
+      <DependentUpon>ServiceEditorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewServicesWindow.xaml.cs">
       <DependentUpon>ViewServicesWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AdminPanelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,6 +150,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ServiceEditorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewServicesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,9 +235,7 @@
     <Resource Include="Resources\Экспресс SPA.png" />
     <Resource Include="Resources\Экспресс-педикюр.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Entities\BeautySalonModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

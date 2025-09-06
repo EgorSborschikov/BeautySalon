@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeautySalon.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,18 @@ namespace BeautySalon
         public AdminPanelWindow()
         {
             InitializeComponent();
+            Loaded += AdminPanelWindow_Loaded;
+        }
+
+        private void AdminPanelWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Загружаем редактор услуг при открытии
+            ServicesEditorFrame.Navigate(new ServiceEditorPage());
+        }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

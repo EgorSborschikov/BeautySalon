@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeautySalon"
         mc:Ignorable="d"
+        Icon="/Resources/beauty_logo.ico"
+        FontFamily="Tahoma"
         Title="Админ-панель" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#ff4a6d">
+            <Button x:Name="BtnBack" Content="Назад" Background="#ff4a6d" Foreground="Aqua" Margin="10" HorizontalAlignment="Left" Click="BtnBack_Click"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center">
+                <Image Source="/Resources/beauty_logo.png"/>
+                <TextBlock Text="Админ-панель" Foreground="White" FontSize="18" FontWeight="Bold" 
+   VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <TabControl Grid.Row="1" Margin="10">
+            <TabItem Header="Редактор услуг">
+                <Frame x:Name="ServicesEditorFrame" NavigationUIVisibility="Hidden"/>
+            </TabItem>
+            <TabItem Header="Управление изображениями">
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <TextBlock Text="Управление изображениями услуг" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="Здесь будет интерфейс для управления изображениями" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Запись клиента на услугу">
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <TextBlock Text="Запись клиентов на услуги" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="Здесь будет интерфейс для записи клиентов" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Управление записями">
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <TextBlock Text="Управление ближайшими записями" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="Здесь будет интерфейс для управления записями клиентов" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
