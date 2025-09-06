@@ -27,7 +27,7 @@ namespace BeautySalon
         {
             InitializeComponent();
             _context = new BeautySalonEntityModel();
-            LoadServices();
+            Loaded += ViewServicesWindow_Loaded;
         }
 
         private void LoadServices()
@@ -57,6 +57,12 @@ namespace BeautySalon
             if (_allServices == null) return;
 
             var filteredServices = _allServices.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(SearchTextBox.Text))
+            {
+                string searchText = SearchTextBox.Text.ToLower();
+                filteredServices = filteredServices.Where(s => s.Title.ToLower().Contains(searchText));
+            }
 
             switch (FilterComboBox.SelectedIndex)
             {
@@ -104,6 +110,16 @@ namespace BeautySalon
             }
 
             ServicesListBox.ItemsSource = filteredServices.ToList();
+        }
+
+        private void ViewServicesWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadServices();
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplyFiltersAndSort();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)

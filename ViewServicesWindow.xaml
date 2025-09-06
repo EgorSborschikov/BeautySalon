@@ -24,17 +24,22 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="10,5" Background="#FFF0F0F0">
+        <Grid Grid.Row="1" Margin="10,5" Background="#ffe4e1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Поиск:" Margin="5" VerticalAlignment="Center"/>
+                <TextBox x:Name="SearchTextBox" Width="150" Margin="5" Padding="5"
+                  TextChanged="SearchTextBox_TextChanged"
+                 ToolTip="Введите название услуги для поиска"/>
+
                 <TextBlock Text="Сортировка:" Margin="5" VerticalAlignment="Center"/>
-                <ComboBox x:Name="SortComboBox" Background="#ffe4e1" Width="120" Margin="5" SelectedIndex="0" SelectionChanged="SortComboBox_SelectionChanged">
+                <ComboBox x:Name="SortComboBox" Width="120" Margin="5" SelectedIndex="0" SelectionChanged="SortComboBox_SelectionChanged">
                     <ComboBoxItem Content="По умолчанию"/>
                     <ComboBoxItem Content="По цене (возр.)"/>
                     <ComboBoxItem Content="По цене (убыв.)"/>
                 </ComboBox>
 
                 <TextBlock Text="Фильтр по скидке:" Margin="10,5,5,5" VerticalAlignment="Center"/>
-                <ComboBox x:Name="FilterComboBox" Background="#ffe4e1" Width="120" Margin="5" SelectedIndex="0" SelectionChanged="FilterComboBox_SelectionChanged">
+                <ComboBox x:Name="FilterComboBox"  Width="120" Margin="5" SelectedIndex="0" SelectionChanged="FilterComboBox_SelectionChanged">
                     <ComboBoxItem Content="Все услуги"/>
                     <ComboBoxItem Content="0-5%"/>
                     <ComboBoxItem Content="5-15%"/>
