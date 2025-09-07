@@ -5,8 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeautySalon.AdminWindows"
         mc:Ignorable="d"
-        Title="ImagesManagementWindow" Height="450" Width="800">
+        Icon="/Resources/beauty_logo.ico"
+        FontFamily="Tahoma"
+        Title="Управление изображениями" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#ff4a6d">
+            <Button x:Name="BtnBack" Content="Назад" Background="#ff4a6d" Foreground="Aqua" Margin="10" HorizontalAlignment="Left" Click="BtnBack_Click"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center">
+                <Image Source="/Resources/beauty_logo.png"/>
+                <TextBlock Text="Управление изображениями" Foreground="White" FontSize="18" FontWeight="Bold" 
+           VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
+            <TextBlock Text="Выберите услугу:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox x:Name="ServicesComboBox" Width="200" DisplayMemberPath="Title"
+                      SelectionChanged="ServicesComboBox_SelectionChanged"/>
+            <Button Content="Обновить список" Margin="10,0,0,0" Click="RefreshButton_Click"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Информация о выбранной услуге -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20"
+                           >
+                    <TextBlock Text="Добавить изображения:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <Button Content="Выбрать файлы" Click="AddImagesButton_Click" Margin="0,0,10,0"/>
+                    <TextBlock x:Name="SelectedServiceText" FontWeight="Bold"/>
+                </StackPanel>
+
+                <!-- Галерея изображений -->
+                <ItemsControl Grid.Row="1" x:Name="ImagesItemsControl">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#CCCCCC" BorderThickness="1" Margin="5" 
+                                    Background="White" CornerRadius="5">
+                                <StackPanel>
+                                    <Image Source="{Binding ImagePath}" Width="150" Height="150" 
+                                           Stretch="UniformToFill" Margin="5"/>
+                                    <Button Content="Удалить" Margin="5" Padding="5,2"
+                                            Click="DeleteImageButton_Click" Tag="{Binding ID}"
+                                            Background="#f44336" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- Сообщение при отсутствии выбранной услуги -->
+                <TextBlock Grid.Row="1" Text="Выберите услугу для управления изображениями" 
+                          HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"
+                          />
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>
