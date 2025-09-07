@@ -5,8 +5,85 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeautySalon.AdminWindows"
         mc:Ignorable="d"
+        FontFamily="Tahoma"
+        Icon="/Resources/beauty_logo.ico"
         Title="ClientRecordingWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         
+        <Grid Grid.Row="0" Background="#ff4a6d">
+            <Button x:Name="BtnBack" Content="Назад" Background="#ff4a6d" Foreground="Aqua" Margin="10" HorizontalAlignment="Left" Click="BtnBack_Click"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center">
+                <Image Source="/Resources/beauty_logo.png"/>
+                <TextBlock Text="Запись клиента на услугу" Foreground="White" FontSize="18" FontWeight="Bold" 
+   VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid Margin="20" Width="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Заголовок -->
+                <TextBlock Grid.Row="0" Text="Введите данные для записи" 
+                      FontSize="18" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+
+                <!-- Выбор услуги -->
+                <TextBlock Grid.Row="1" Text="Выберите услугу:" Margin="0,0,0,5"/>
+                <ComboBox Grid.Row="2" x:Name="ServicesComboBox" DisplayMemberPath="Title" 
+                     SelectionChanged="ServicesComboBox_SelectionChanged" Margin="0,0,0,15"/>
+
+                <!-- Информация о выбранной услуге -->
+                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,15"
+                       >
+                    <TextBlock Text="Длительность:" FontWeight="Bold" Margin="0,0,5,0"/>
+                    <TextBlock x:Name="DurationText"/>
+                    <TextBlock Text="мин" Margin="5,0,0,0"/>
+                </StackPanel>
+
+                <!-- Выбор клиента -->
+                <TextBlock Grid.Row="4" Text="Выберите клиента:" Margin="0,0,0,5"/>
+                <ComboBox Grid.Row="5" x:Name="ClientsComboBox" DisplayMemberPath="FullName" Margin="0,0,0,15"/>
+
+                <!-- Дата оказания услуги -->
+                <TextBlock Grid.Row="6" Text="Дата оказания услуги:" Margin="0,0,0,5"/>
+                <DatePicker Grid.Row="7" x:Name="ServiceDatePicker" Margin="0,0,0,15"
+                       SelectedDateChanged="ServiceDatePicker_SelectedDateChanged"/>
+
+                <!-- Время начала -->
+                <TextBlock Grid.Row="8" Text="Время начала (HH:MM):" Margin="0,0,0,5"/>
+                <TextBox Grid.Row="9" x:Name="StartTimeTextBox" Margin="0,0,0,15"
+                    TextChanged="StartTimeTextBox_TextChanged" PreviewTextInput="StartTimeTextBox_PreviewTextInput"/>
+
+                <!-- Время окончания -->
+                <TextBlock Grid.Row="10" Text="Время окончания:" Margin="0,0,0,5"/>
+                <TextBlock Grid.Row="11" x:Name="EndTimeText" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                <!-- Кнопка записи -->
+                <Button Grid.Row="12" Content="Записать клиента" Click="RecordClientButton_Click" 
+                   HorizontalAlignment="Center" Padding="20,10" FontSize="14" 
+                   Background="#4CAF50" Foreground="White" Margin="0,0,0,10"/>
+
+                <!-- Сообщения -->
+                <TextBlock Grid.Row="13" x:Name="MessageText" Margin="0,10" Foreground="Red" 
+                      TextWrapping="Wrap" HorizontalAlignment="Center"/>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>
