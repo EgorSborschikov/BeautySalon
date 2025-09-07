@@ -23,28 +23,15 @@
             </StackPanel>
         </Grid>
 
-        <TabControl Grid.Row="1" Margin="10">
-            <TabItem Header="Редактор услуг">
-                <Frame x:Name="ServicesEditorFrame" NavigationUIVisibility="Hidden"/>
-            </TabItem>
-            <TabItem Header="Управление изображениями">
-                <StackPanel Orientation="Vertical" Margin="10">
-                    <TextBlock Text="Управление изображениями услуг" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
-                    <TextBlock Text="Здесь будет интерфейс для управления изображениями" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Запись клиента на услугу">
-                <StackPanel Orientation="Vertical" Margin="10">
-                    <TextBlock Text="Запись клиентов на услуги" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
-                    <TextBlock Text="Здесь будет интерфейс для записи клиентов" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Управление записями">
-                <StackPanel Orientation="Vertical" Margin="10">
-                    <TextBlock Text="Управление ближайшими записями" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
-                    <TextBlock Text="Здесь будет интерфейс для управления записями клиентов" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </StackPanel>
-            </TabItem>
-        </TabControl>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,5" HorizontalAlignment="Center">
+            <Button x:Name="BtnServices" Content="Редактор услуг" Margin="5" Padding="15,5" 
+                    Click="BtnServices_Click" Background="#ff4a6d" Foreground="White" FontWeight="Bold"/>
+            <Button x:Name="BtnImages" Content="Управление изображениями" Margin="5" Padding="15,5" 
+                    Click="BtnImages_Click" Background="#2196F3" Foreground="White" FontWeight="Bold"/>
+            <Button x:Name="BtnClientRecords" Content="Запись клиентов" Margin="5" Padding="15,5" 
+                    Click="BtnClientRecords_Click" Background="#4CAF50" Foreground="White" FontWeight="Bold"/>
+            <Button x:Name="BtnManageRecords" Content="Управление записями" Margin="5" Padding="15,5" 
+                    Click="BtnManageRecords_Click" Background="#FF9800" Foreground="White" FontWeight="Bold"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -70,16 +70,41 @@
     <Compile Include="AdminPanelWindow.xaml.cs">
       <DependentUpon>AdminPanelWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminWindows\ClientRecordingWindow.xaml.cs">
+      <DependentUpon>ClientRecordingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindows\ImagesManagementWindow.xaml.cs">
+      <DependentUpon>ImagesManagementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindows\RecordsManagementWindow.xaml.cs">
+      <DependentUpon>RecordsManagementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindows\ServiceEditorWindow.xaml.cs">
+      <DependentUpon>ServiceEditorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditServiceWindow.xaml.cs">
       <DependentUpon>EditServiceWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ServiceEditorPage.xaml.cs">
-      <DependentUpon>ServiceEditorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewServicesWindow.xaml.cs">
       <DependentUpon>ViewServicesWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AdminPanelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\ClientRecordingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\ImagesManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\RecordsManagementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\ServiceEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,10 +175,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\ServiceEditorPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ViewServicesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

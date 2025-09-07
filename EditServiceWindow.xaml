@@ -29,27 +29,52 @@ VerticalAlignment="Center" Margin="10,0,0,0"/>
             </StackPanel>
         </Grid>
 
-        <TextBlock Grid.Row="0" Text="Название услуги:" Margin="0,0,0,5"/>
-        <TextBox Grid.Row="1" x:Name="TitleTextBox" Margin="0,0,0,10"/>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="2" Text="Стоимость:" Margin="0,0,0,5"/>
-        <TextBox Grid.Row="3" x:Name="CostTextBox" Margin="0,0,0,10"/>
+                <!-- Поля формы в два столбца -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Название:" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="TitleTextBox" Margin="0,0,0,10"/>
 
-        <TextBlock Grid.Row="4" Text="Продолжительность (минуты):" Margin="0,0,0,5"/>
-        <TextBox Grid.Row="5" x:Name="DurationTextBox" Margin="0,0,0,10"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Стоимость:" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="CostTextBox" Margin="0,0,0,10"/>
 
-        <TextBlock Grid.Row="6" Text="Скидка (0.0 - 1.0):" Margin="0,0,0,5"/>
-        <TextBox Grid.Row="7" x:Name="DiscountTextBox" Margin="0,0,0,10"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Продолжительность (мин):" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="DurationTextBox" Margin="0,0,0,10"/>
 
-        <TextBlock Grid.Row="8" Text="Описание:" Margin="0,0,0,5"/>
-        <TextBox Grid.Row="9" x:Name="DescriptionTextBox" AcceptsReturn="True" TextWrapping="Wrap" Height="60" Margin="0,0,0,10"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Скидка (0.0-1.0):" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="DiscountTextBox" Margin="0,0,0,10"/>
 
-        <TextBlock Grid.Row="10" Text="Путь к изображению:" Margin="0,0,0,5"/>
-        <TextBox Grid.Row="11" x:Name="ImagePathTextBox" Margin="0,0,0,20"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Путь к изображению:" Margin="0,0,10,10" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="4" Grid.Column="1" x:Name="ImagePathTextBox" Margin="0,0,0,20"/>
 
-        <StackPanel Grid.Row="12" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="SaveButton" Content="Сохранить" Width="80" Margin="5" Click="SaveButton_Click"/>
-            <Button Content="Отмена" Width="80" Margin="5" Click="CancelButton_Click"/>
-        </StackPanel>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Описание:" Margin="0,0,10,10" VerticalAlignment="Top"/>
+                <TextBox Grid.Row="5" Grid.Column="1" x:Name="DescriptionTextBox" AcceptsReturn="True" TextWrapping="Wrap" 
+                         Height="80" VerticalScrollBarVisibility="Auto"/>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Кнопки внизу -->
+        <Border Grid.Row="2" Background="#F5F5F5" Padding="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="SaveButton" Content="Сохранить" Width="100" Margin="5" Padding="10,5" 
+                        Click="SaveButton_Click" Background="#4CAF50" Foreground="White"/>
+                <Button Content="Отмена" Width="100" Margin="5" Padding="10,5" 
+                        Click="CancelButton_Click" Background="#f44336" Foreground="White"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

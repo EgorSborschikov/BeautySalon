@@ -11,20 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BeautySalon.Pages
+namespace BeautySalon.AdminWindows
 {
     /// <summary>
-    /// Логика взаимодействия для ServiceEditorPage.xaml
+    /// Логика взаимодействия для ServiceEditorWindow.xaml
     /// </summary>
-    public partial class ServiceEditorPage : Page
+    public partial class ServiceEditorWindow : Window
     {
         private BeautySalonEntityModel _context;
         private List<Service> _services;
 
-        public ServiceEditorPage()
+        public ServiceEditorWindow()
         {
             InitializeComponent();
             Loaded += ServicesEditorPage_Loaded;
@@ -40,21 +39,49 @@ namespace BeautySalon.Pages
             try
             {
                 _context = new BeautySalonEntityModel();
-                _services = new List<Service>();
 
-                foreach (var service in _services)
+                // Проверяем подключение к базе
+                if (_context.Database.Exists())
                 {
-                    if (!string.IsNullOrEmpty(service.MainImagePath))
+                    // Загружаем данные с включением отслеживания
+                    _services = _context.Service.AsNoTracking().ToList();
+
+                    MessageBox.Show($"Загружено услуг: {_services.Count}"); // Отладочное сообщение
+
+                    // Обновляем пути к изображениям
+                    foreach (var service in _services)
                     {
-                        service.MainImagePath = "/" + service.MainImagePath;
+                        if (!string.IsNullOrEmpty(service.MainImagePath))
+                        {
+                            // Проверяем формат пути к изображению
+                            if (!service.MainImagePath.StartsWith("/Resources/"))
+                            {
+                                service.MainImagePath = "/" + service.MainImagePath;
+                            }
+                        }
+                        else
+                        {
+                            // Устанавливаем изображение по умолчанию, если путь пустой
+                            service.MainImagePath = "/Resources/default_service.png";
+                        }
+                    }
+
+                    ServicesListBox.ItemsSource = _services;
+
+                    // Проверяем, есть ли данные в ListBox
+                    if (ServicesListBox.Items.Count == 0)
+                    {
+                        MessageBox.Show("Нет данных для отображения");
                     }
                 }
-
-                ServicesListBox.ItemsSource = _services;
+                else
+                {
+                    MessageBox.Show("Нет подключения к базе данных");
+                }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка загрузки данных: {ex.Message}");
+                MessageBox.Show($"Ошибка загрузки данных: {ex.Message}\n\n{ex.InnerException?.Message}");
             }
         }
 
